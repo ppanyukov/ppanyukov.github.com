@@ -1,16 +1,19 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>le blog</title>
-    </head>
+---
+layout: default
+title: Kommie P - le blog
+---
 
-    <body>
-        <hr/>
-        <h1>le posts</h1>
-        <a href="posts/le-lingo.markdown">le languages</a>
-        </p>
-        <hr/>
-        <h1>a funny</h1>
-        <img src="http://i.imgur.com/hdVKm.png"/>
-    </body>
-</html>
+<!DOCTYPE html>
+<div id="home">
+    <h1>le posts</h1>
+    <ul class="posts">
+    {% for post in site.posts %}
+      <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
+    </ul>
+</div>    
+
+<!--
+<h1>a funny</h1>
+<img src="http://i.imgur.com/hdVKm.png"/>
+-->
