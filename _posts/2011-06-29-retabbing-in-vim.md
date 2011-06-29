@@ -10,7 +10,7 @@ Here is how it looked:
             let bar = 
               get_file_names()
               |> Seq.filter (f -> f.EndsWith(".cs")
-            let bar2 = do_something_with_bar
+            let bar2 = do_something_with_bar bar
             bar2
 
 And here is how I wanted it to look
@@ -20,7 +20,7 @@ And here is how I wanted it to look
                 let bar = 
                     get_file_names()
                     |> Seq.filter (f -> f.EndsWith(".cs")
-                let bar2 = do_something_with_bar
+                let bar2 = do_something_with_bar bar
                 bar2
 
 
@@ -50,7 +50,7 @@ Step 3. Convert real tabs back to spaces, using tabsize 4
 
 It's possible to get all this on one line:
 
-        :set list | set ts=2 | set noet | retab! | set et | set ts=4 | retab
+        :set ts=2 noet | retab! | set et ts=4 | retab
 
 
 
