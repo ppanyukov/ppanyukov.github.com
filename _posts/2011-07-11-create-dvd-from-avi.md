@@ -1,16 +1,16 @@
-Here is a sequence how to create a DVD image from AVI file on Linux (Ubuntu).
-
-The sequence is:
+# Creating DVD images from AVI files on Linux #
+## General sequence ##
 
         AVI -> MPEG2 -> DVD File System -> DVD ISO -> DVD Disk
 
-Tools:
+## Tools ##
 
     -   ffmpeg    (AVI -> MPEG2)
     -   dvdauthor (MPEG2 -> DVD File System)
     -   mkisofs   (DVD File System -> DVD ISO)
     -   growisofs (DVD ISO -> DVD)
 
+## Details ##
 
 1. Export the video format as an environmental variable, otherwise there may
    be problems with the DVD file system.
