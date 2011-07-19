@@ -197,7 +197,9 @@ Lets summarise. In F# we have:
 4.  Functions are generic by default. Not in C#.
 5.  Code seems to be much more concise and readable. C# has too much clutter, it's too verbose.
 
+
 ------------------------------------------------
+
 ## Can't assign lambdas to implicit variables ##
 
 Scanario. I want to write something like this:
