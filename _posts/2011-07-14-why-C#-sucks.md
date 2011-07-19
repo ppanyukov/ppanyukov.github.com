@@ -1,3 +1,8 @@
+---
+layout: post
+title: Why C# sucks
+---
+
 # Why C# sucks #
 
 This is a growing list of my annoyances with C# which emerged after my exploration of other languages, in particular F#.
