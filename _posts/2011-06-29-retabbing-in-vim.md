@@ -1,3 +1,8 @@
+---
+layout: post
+title: Retabbing files using VIM
+---
+
 # Retabbing files using VIM #
 
 Recently I've made a mistake of using 2 spaces to indent my F# program. After
