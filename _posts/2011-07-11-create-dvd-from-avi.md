@@ -2,7 +2,8 @@
 layout: post
 title: Burning DVD images from AVI files
 ---
-
+# Burning DVD images from AVI files #
+ 
 ## General sequence ##
 
 My understanding is that  the general sequence is like this:
