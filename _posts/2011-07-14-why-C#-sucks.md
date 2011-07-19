@@ -7,7 +7,7 @@ title: Why C# sucks
 
 This is a growing list of my annoyances with C# which emerged after my exploration of other languages, in particular F#.
 
-## Functions are not first class citizens ##
+# Functions are not first class citizens #
 
 There are many, many times when I want to have a nice function which does
 something but I need or want to break it into several smaller functions.
@@ -200,7 +200,7 @@ Lets summarise. In F# we have:
 
 ------------------------------------------------
 
-## Can't assign lambdas to implicit variables ##
+# Can't assign lambdas to implicit variables #
 
 Scanario. I want to write something like this:
 
