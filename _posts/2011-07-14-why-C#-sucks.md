@@ -1,9 +1,9 @@
 ---
 layout: post
-title: Why C# sucks
+title: Le C# Grit
 ---
 
-# Why C# sucks #
+# Le C# Grit #
 
 This is a growing list of my annoyances with C# which emerged after my exploration of other languages, in particular F#.
 
