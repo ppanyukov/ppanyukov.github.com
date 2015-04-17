@@ -1,0 +1,20 @@
+# Site settings
+title: Foo! Bar!
+email: your-email@domain.com
+description: > # this means to ignore newlines until "baseurl:"
+  Random bits and pieces on boring techie subjects.
+baseurl: "" # the subpath of your site, e.g. /blog/
+# url: "http://yourdomain.com" # the base hostname & protocol for your site
+# twitter_username: jekyllrb
+github_username:  ppanyukov
+
+# Build settings
+markdown: kramdown
+
+
+# Customisations
+# As per http://jekyll-windows.juthilo.com/3-syntax-highlighting/
+encoding: utf-8
+
+# Baseurl to serve from project sub-path, as per: http://jekyllrb.com/docs/github-pages/#project-page-url-structure
+# baseurl: /foobar
