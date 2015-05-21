@@ -48,7 +48,7 @@ If everything goes well, you should see:
 
 	![Bash window]({{ site.images }}/2015-05-21-how-to-install-docker-on-windows/02-01-bash-window.PNG)
 	
-	![Running docker vm]({{ site.images }}/2015-05-21-how-to-install-docker-on-windows/02-02-running-docker-vm.png)
+	![Running docker vm]({{ site.images }}/2015-05-21-how-to-install-docker-on-windows/02-02-running-docker-vm.PNG)
 
 
 **4. Post Install**
