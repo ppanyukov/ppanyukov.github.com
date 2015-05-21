@@ -30,9 +30,18 @@ ADO.NET (writing code by hand) and [dapper.net].
 
 The bechmark:
 
-- 	A simple ASP.NET 5 Web Api project with three endpoints, each doing a simple
-	`select name, type ... from sys.objects` using EF7, [dapper.net] and raw ADO.NET code written 
-	by hand.
+- 	A simple ASP.NET 5 Web Api project with several endpoints each doing a simple
+	`select name, type ... from sys.objects` and returing data in JSON format. 
+
+	Endpoints implemented using:
+
+	- 	Entity Framework 7; 
+	- 	[dapper.net];
+	- 	raw ADO.NET code written by hand; and
+	- 	serving hard-coded JSON response from memory.
+<br/>
+<br/>
+
 
 -	I used [`ab`][ab] benchmarker to see how many requests per second I get from each endpoint.
 
@@ -44,6 +53,7 @@ The bechmark:
 - 	Entity Framework 7 (beta 7): 50 req/sec
 -	[Dapper.net][dapper.net]: 340 req/sec
 -	Raw ADO.NET (all code writting by hand): 337 req/sec
+- 	Serving JSON from memory: 1495 req/sec
 
 
 
@@ -171,6 +181,46 @@ The bechmark:
 	  99%      4
 	 100%     18 (longest request)
 
+
+
+**Serving hardcoded string from memory**
+
+	Server Software:        Microsoft-HTTPAPI/2.0
+	Server Hostname:        localhost
+	Server Port:            5000
+
+	Document Path:          /memory/sys.objects
+	Document Length:        19446 bytes
+
+	Concurrency Level:      1
+	Time taken for tests:   1.337 seconds
+	Complete requests:      2000
+	Failed requests:        0
+	Keep-Alive requests:    0
+	Total transferred:      39198000 bytes
+	HTML transferred:       38892000 bytes
+	Requests per second:    1495.81 [#/sec] (mean)
+	Time per request:       0.669 [ms] (mean)
+	Time per request:       0.669 [ms] (mean, across all concurrent requests)
+	Transfer rate:          28629.37 [Kbytes/sec] received
+
+	Connection Times (ms)
+	              min  mean[+/-sd] median   max
+	Connect:        0    0   0.3      0       1
+	Processing:     0    0   0.8      0      25
+	Waiting:        0    0   0.7      0      25
+	Total:          0    1   0.8      1      25
+
+	Percentage of the requests served within a certain time (ms)
+	  50%      1
+	  66%      1
+	  75%      1
+	  80%      1
+	  90%      1
+	  95%      1
+	  98%      1
+	  99%      2
+	 100%     25 (longest request)
 
 
 
