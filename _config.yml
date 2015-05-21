@@ -18,3 +18,5 @@ encoding: utf-8
 
 # Baseurl to serve from project sub-path, as per: http://jekyllrb.com/docs/github-pages/#project-page-url-structure
 # baseurl: /foobar
+
+images: /images
