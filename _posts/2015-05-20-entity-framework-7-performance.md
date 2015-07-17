@@ -274,5 +274,5 @@ See all [changes to this post here](https://github.com/ppanyukov/ppanyukov.githu
 [dapper.net]: https://github.com/StackExchange/dapper-dot-net "dapper.net github project"
 [ab]: http://en.wikipedia.org/wiki/ApacheBench "Wikipedia - ApacheBench tool"
 [project]: https://github.com/ppanyukov/EntityFrameworkBenchmarks "Source code for benchmarks"
-[comments]: https://github.com/ppanyukov/EntityFrameworkBenchmarks/issues "Comments for the post and code"
+[comments]: https://github.com/ppanyukov/EntityFrameworkBenchmarks/issues?q= "Comments for the post and code"
 
