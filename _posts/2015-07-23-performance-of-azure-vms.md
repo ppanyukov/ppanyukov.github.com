@@ -118,6 +118,12 @@ Obviously these may be completely different now.
 
 ![Azure: G1]({{ site.images }}/2015-07-23-azure-cpus/g1.png)
 
+
+<br/>
+**Azure: A2 (01 Aug 2015)**
+
+![Azure: A2]({{ site.images }}/2015-07-23-azure-cpus/a2-01aug2015.png)
+
 --------
 <br/>
 For comments, suggestions etc, please [open an issue here](https://github.com/ppanyukov/PerfMicroBenchmarks/issues?&q=).
