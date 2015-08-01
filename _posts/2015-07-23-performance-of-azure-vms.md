@@ -122,7 +122,21 @@ Obviously these may be completely different now.
 <br/>
 **Azure: A2 (01 Aug 2015)**
 
-![Azure: A2]({{ site.images }}/2015-07-23-azure-cpus/a2-01aug2015.png)
+On 01 Aug 2015 I've built 3 A2 VMs in the same location, and I got 
+3 different CPUs on each.
+
+![Azure: A2-1]({{ site.images }}/2015-07-23-azure-cpus/a2-01-01aug2015.png)
+
+![Azure: A2-2]({{ site.images }}/2015-07-23-azure-cpus/a2-02-01aug2015.png)
+
+![Azure: A2-3]({{ site.images }}/2015-07-23-azure-cpus/a2-03-01aug2015.png)
+    
+
+
+The first one ran was so slow it was unusable. The CPU there looks very similar
+to the one in G1 instance, but it was almost always at 100%, even Task Manager
+using 40% of it. Strange.
+
 
 --------
 <br/>
