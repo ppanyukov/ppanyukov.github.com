@@ -1,14 +1,17 @@
 ---
 layout: post
 title: "Performance: Entity Framework 7 vs. Dapper.net vs. raw ADO.NET"
-excerpt: "Performance comparison of the upcoming Microsoft Entity Framework 7 (beta 4) against dapper.net and manual ADO.NET in ASP.NET 5. With some performance advice using Entity Framework."
+excerpt: "Performance comparison of the upcoming Microsoft Entity Framework 7 (beta 7) against dapper.net and manual ADO.NET in ASP.NET 5. With some performance advice using Entity Framework."
 ---
+
+*(Update 06 Aug 2015): Updated benchmarks with Beta-7 versions of everything)*
 
 *(Update 17 July 2015: Added benchmark for EF using `AsNoTracking` as per [this advice](https://github.com/ppanyukov/EntityFrameworkBenchmarks/issues/1). Yes, it makes things faster :))*
 
+
 ## TL;DR
 
-- 	Entity Framework 7 (EF7) is coming soon, it's currently in Beta 4. See 
+- 	Entity Framework 7 (EF7) is coming soon, it's currently in Beta 7. See 
 	[here](https://github.com/aspnet/EntityFramework/wiki/What-is-EF7-all-about) 
 	and 
 	[here](http://blogs.msdn.com/b/adonet/archive/2014/11/12/visual-studio-2015-preview-and-entity-framework.aspx).
@@ -26,6 +29,29 @@ excerpt: "Performance comparison of the upcoming Microsoft Entity Framework 7 (b
 -	View and leave commends [here on github][comments].
 
 
+## Brief benchmark results (best recorded run)
+
+**Beta 7 everything (ran on 6 Aug 2015):**
+
+(Note there does not seem to be EF-specific improvements in benchmarks, but everything is a little faster comparing with Beta 4. Looks like improvements are due to Asp.Net/CLR.)
+
+- 	Entity Framework 7 (beta 7): 62 req/sec
+- 	Entity Framework 7 (beta 7) [with **AsNoTracking**](https://github.com/ppanyukov/EntityFrameworkBenchmarks/issues/1): 120 req/sec
+-	[Dapper.net][dapper.net]: 425 req/sec
+-	Raw ADO.NET (all code writting by hand): 432 req/sec
+- 	Serving JSON from memory: 2,666 req/sec
+
+
+
+**Beta 4:**
+
+- 	Entity Framework 7 (beta 4): 50 req/sec
+- 	Entity Framework 7 (beta 4) [with **AsNoTracking**](https://github.com/ppanyukov/EntityFrameworkBenchmarks/issues/1): 114 req/sec
+-	[Dapper.net][dapper.net]: 340 req/sec
+-	Raw ADO.NET (all code writting by hand): 380 req/sec
+- 	Serving JSON from memory: 1,800 req/sec
+
+
 
 ## The benchmark
 
@@ -41,7 +67,7 @@ The bechmark:
 
 	Endpoints implemented using:
 
-	- 	Entity Framework 7; 
+	- 	Entity Framework 7 (beta 7); 
 	- 	[dapper.net];
 	- 	raw ADO.NET code written by hand; and
 	- 	serving hard-coded JSON response from memory.
@@ -54,21 +80,13 @@ The bechmark:
 - 	All running on local (and pretty powerful) local dev machine.
 
 
-**Brief benchmark results (best recorded run)**
-
-- 	Entity Framework 7 (beta 4): 50 req/sec
-- 	Entity Framework 7 (beta 4) [with **AsNoTracking**](https://github.com/ppanyukov/EntityFrameworkBenchmarks/issues/1): 114 req/sec
--	[Dapper.net][dapper.net]: 340 req/sec
--	Raw ADO.NET (all code writting by hand): 380 req/sec
-- 	Serving JSON from memory: 1800 req/sec
 
 
+### Full benchmark results - Beta 7
 
-### Full benchmark results
+<!-- Re-ran on 06 Aug 2015-->
 
-<!-- Re-ran on 17 July -->
-
-**Entity Framework 7 (beta 4)**
+**Entity Framework 7 (beta 6)**
 
 	Server Software:        Microsoft-HTTPAPI/2.0
 	Server Hostname:        localhost
@@ -78,36 +96,37 @@ The bechmark:
 	Document Length:        16684 bytes
 
 	Concurrency Level:      1
-	Time taken for tests:   39.482 seconds
+	Time taken for tests:   32.150 seconds
 	Complete requests:      2000
 	Failed requests:        0
+	Keep-Alive requests:    0
 	Total transferred:      33674000 bytes
 	HTML transferred:       33368000 bytes
-	Requests per second:    50.66 [#/sec] (mean)
-	Time per request:       19.741 [ms] (mean)
-	Time per request:       19.741 [ms] (mean, across all concurrent requests)
-	Transfer rate:          832.90 [Kbytes/sec] received
+	Requests per second:    62.21 [#/sec] (mean)
+	Time per request:       16.075 [ms] (mean)
+	Time per request:       16.075 [ms] (mean, across all concurrent requests)
+	Transfer rate:          1022.84 [Kbytes/sec] received
 
 	Connection Times (ms)
 	              min  mean[+/-sd] median   max
-	Connect:        0    0   0.3      0       1
-	Processing:    15   20  18.3     17     396
-	Waiting:       14   19  18.3     16     396
-	Total:         15   20  18.2     17     396
+	Connect:        0    0   0.9      0      16
+	Processing:     0   16   3.8     16      31
+	Waiting:        0   16   4.2     16      31
+	Total:          0   16   3.7     16      31
 
 	Percentage of the requests served within a certain time (ms)
-	  50%     17
-	  66%     17
-	  75%     17
-	  80%     18
-	  90%     19
-	  95%     28
-	  98%     38
-	  99%     79
-	 100%    396 (longest request)
+	  50%     16
+	  66%     16
+	  75%     16
+	  80%     16
+	  90%     16
+	  95%     16
+	  98%     31
+	  99%     31
+	 100%     31 (longest request)
 
 
-**Entity Framework 7 - using AsNoTracking (beta 4)** 
+**Entity Framework 7 - using AsNoTracking (beta 7)** 
 
 	Server Software:        Microsoft-HTTPAPI/2.0
 	Server Hostname:        localhost
@@ -117,37 +136,37 @@ The bechmark:
 	Document Length:        16684 bytes
 
 	Concurrency Level:      1
-	Time taken for tests:   17.485 seconds
+	Time taken for tests:   16.820 seconds
 	Complete requests:      2000
 	Failed requests:        0
+	Keep-Alive requests:    0
 	Total transferred:      33674000 bytes
 	HTML transferred:       33368000 bytes
-	Requests per second:    114.39 [#/sec] (mean)
-	Time per request:       8.742 [ms] (mean)
-	Time per request:       8.742 [ms] (mean, across all concurrent requests)
-	Transfer rate:          1880.77 [Kbytes/sec] received
+	Requests per second:    118.91 [#/sec] (mean)
+	Time per request:       8.410 [ms] (mean)
+	Time per request:       8.410 [ms] (mean, across all concurrent requests)
+	Transfer rate:          1955.14 [Kbytes/sec] received
 
 	Connection Times (ms)
 	              min  mean[+/-sd] median   max
-	Connect:        0    0   0.3      0       1
-	Processing:     6    9  16.7      7     447
-	Waiting:        6    8  13.6      7     418
-	Total:          6    9  16.7      7     447
+	Connect:        0    0   1.0      0      16
+	Processing:     0    8   8.9     16     156
+	Waiting:        0    8   9.0      0     156
+	Total:          0    8   8.9     16     156
 
 	Percentage of the requests served within a certain time (ms)
-	  50%      7
-	  66%      8
-	  75%      8
-	  80%      8
-	  90%      8
-	  95%      9
-	  98%     11
-	  99%     21
-	 100%    447 (longest request)
+	  50%     16
+	  66%     16
+	  75%     16
+	  80%     16
+	  90%     16
+	  95%     16
+	  98%     16
+	  99%     16
+	 100%    156 (longest request)
 
 
 **Dapper.net**
-
 
 	Server Software:        Microsoft-HTTPAPI/2.0
 	Server Hostname:        localhost
@@ -157,33 +176,34 @@ The bechmark:
 	Document Length:        16684 bytes
 
 	Concurrency Level:      1
-	Time taken for tests:   5.766 seconds
+	Time taken for tests:   4.705 seconds
 	Complete requests:      2000
 	Failed requests:        0
+	Keep-Alive requests:    0
 	Total transferred:      33674000 bytes
 	HTML transferred:       33368000 bytes
-	Requests per second:    346.84 [#/sec] (mean)
-	Time per request:       2.883 [ms] (mean)
-	Time per request:       2.883 [ms] (mean, across all concurrent requests)
-	Transfer rate:          5702.90 [Kbytes/sec] received
+	Requests per second:    425.04 [#/sec] (mean)
+	Time per request:       2.353 [ms] (mean)
+	Time per request:       2.353 [ms] (mean, across all concurrent requests)
+	Transfer rate:          6988.61 [Kbytes/sec] received
 
 	Connection Times (ms)
 	              min  mean[+/-sd] median   max
-	Connect:        0    0   0.3      0       1
-	Processing:     2    3   4.5      2     158
-	Waiting:        1    2   4.5      2     158
-	Total:          2    3   4.5      3     158
+	Connect:        0    0   0.7      0      16
+	Processing:     0    2   5.5      0      17
+	Waiting:        0    2   5.1      0      17
+	Total:          0    2   5.5      0      17
 
 	Percentage of the requests served within a certain time (ms)
-	  50%      3
-	  66%      3
-	  75%      3
-	  80%      3
-	  90%      3
-	  95%      4
-	  98%      4
-	  99%      6
-	 100%    158 (longest request)
+	  50%      0
+	  66%      0
+	  75%      0
+	  80%      0
+	  90%     16
+	  95%     16
+	  98%     16
+	  99%     16
+	 100%     17 (longest request)
 
 
 **Raw manual ADO.NET**
@@ -196,37 +216,34 @@ The bechmark:
 	Document Length:        16684 bytes
 
 	Concurrency Level:      1
-	Time taken for tests:   5.151 seconds
+	Time taken for tests:   4.624 seconds
 	Complete requests:      2000
 	Failed requests:        0
+	Keep-Alive requests:    0
 	Total transferred:      33674000 bytes
 	HTML transferred:       33368000 bytes
-	Requests per second:    388.25 [#/sec] (mean)
-	Time per request:       2.576 [ms] (mean)
-	Time per request:       2.576 [ms] (mean, across all concurrent requests)
-	Transfer rate:          6383.80 [Kbytes/sec] received
+	Requests per second:    432.56 [#/sec] (mean)
+	Time per request:       2.312 [ms] (mean)
+	Time per request:       2.312 [ms] (mean, across all concurrent requests)
+	Transfer rate:          7112.27 [Kbytes/sec] received
 
 	Connection Times (ms)
 	              min  mean[+/-sd] median   max
-	Connect:        0    0   0.3      0       1
-	Processing:     2    2   0.6      2      11
-	Waiting:        1    2   0.5      2      10
-	Total:          2    3   0.7      2      11
-	WARNING: The median and mean for the total time are not within a normal deviation
-	        These results are probably not that reliable.
+	Connect:        0    0   1.1      0      16
+	Processing:     0    2   5.4      0      16
+	Waiting:        0    2   4.9      0      16
+	Total:          0    2   5.5      0      16
 
 	Percentage of the requests served within a certain time (ms)
-	  50%      2
-	  66%      3
-	  75%      3
-	  80%      3
-	  90%      3
-	  95%      3
-	  98%      3
-	  99%      4
-	 100%     11 (longest request)
-
-
+	  50%      0
+	  66%      0
+	  75%      0
+	  80%      0
+	  90%     16
+	  95%     16
+	  98%     16
+	  99%     16
+	 100%     16 (longest request)
 
 **Serving hardcoded string from memory**
 
@@ -238,32 +255,35 @@ The bechmark:
 	Document Length:        19446 bytes
 
 	Concurrency Level:      1
-	Time taken for tests:   1.065 seconds
+	Time taken for tests:   0.750 seconds
 	Complete requests:      2000
 	Failed requests:        0
+	Keep-Alive requests:    0
 	Total transferred:      39198000 bytes
 	HTML transferred:       38892000 bytes
-	Requests per second:    1877.82 [#/sec] (mean)
-	Time per request:       0.533 [ms] (mean)
-	Time per request:       0.533 [ms] (mean, across all concurrent requests)
-	Transfer rate:          35940.91 [Kbytes/sec] received
+	Requests per second:    2666.66 [#/sec] (mean)
+	Time per request:       0.375 [ms] (mean)
+	Time per request:       0.375 [ms] (mean, across all concurrent requests)
+	Transfer rate:          51038.93 [Kbytes/sec] received
 
 	Connection Times (ms)
 	              min  mean[+/-sd] median   max
-	Connect:        0    0   0.3      0       1
-	Processing:     0    0   0.6      0      15
-	Waiting:        0    0   0.5      0       1
-	Total:          0    0   0.6      0      15
+	Connect:        0    0   1.0      0      16
+	Processing:     0    0   2.0      0      16
+	Waiting:        0    0   1.6      0      16
+	Total:          0    0   2.2      0      16
 
 	Percentage of the requests served within a certain time (ms)
 	  50%      0
-	  66%      1
-	  75%      1
-	  80%      1
-	  90%      1
-	  95%      1
-	  98%      1
-	  99%      1
+	  66%      0
+	  75%      0
+	  80%      0
+	  90%      0
+	  95%      0
+	  98%     16
+	  99%     16
+	 100%     16 (longest request)
+
 
 <hr/>
 
