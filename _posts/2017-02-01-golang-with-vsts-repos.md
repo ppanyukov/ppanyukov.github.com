@@ -266,6 +266,10 @@ Nothing to see here!
 
 For completely transparent go tooling the web app must support HTTPS.
 
+# The implementation
+
+See https://gist.github.com/ppanyukov/d3fbc5d0e85569146a264a994d032b0d for
+sample implementation in `go`.
 
 
 
